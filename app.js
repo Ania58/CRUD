@@ -33,9 +33,16 @@ app.post('/usuarios',(req,res)=>{
 
 app.get('/usuarios/:nombre',(req,res)=>{
     const userName = req.params.nombre
-    const specificUser = usuarios.find(usuario => userName === usuario.nombre)
+    const specificUser = usuarios.find(usuario => userName === usuario.nombre) // me devuelve un usuario para verlo
     res.send(specificUser)
     
+})
+
+app.delete('/usuarios/:nombre',(req,res) =>{
+    const userName = req.params.nombre
+    const arrayFiltered = usuarios.filter(usuario => usuario.nombre != userName) // elimina el usuario, cambiando el array
+    usuarios = arrayFiltered
+    res.send(usuarios)
 })
 
 app.use((req,res)=>{
